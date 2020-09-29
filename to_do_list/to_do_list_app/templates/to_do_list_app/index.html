@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block content %}
+
+<div class=" row ml-5 mt-5" xmlns="http://www.w3.org/1999/html">
+    <div class="col">
+        <h1>Add Item</h1>
+
+        <form action= 'add_data_view/' method="post" class="form-inline" >{% csrf_token %}
+            <input type="text" name="content" class="form-control mb-2 mr-sm-2" placeholder="type here....">
+            <button type="submit" class="btn btn-primary mb-2 mr-2">Submit</button>
+        </form>
+    </div>
+</div>
+    <div class="row ml-4 mt-5">
+        <div class="col">
+            <ul class="list-group">
+                {% for todo_item in todo_items %}
+                    <li class="list-group-item"> {{ todo_item.text }}
+
+                        <div class = "float-right">
+                            <form action='delete_data_view/{{ todo_item.id }}/' method="post">{% csrf_token %}
+                                <h5>  <span class="badge badge-secondary">{{todo_item.added_date}}</span></h5>
+                                <button type="submit" class="btn btn-sm btn-danger">Delete</button>
+                            </form>
+                            <form action="update_data_view/{{ todo_item.id }}/" method="post"> {% csrf_token %}
+                                <button type="submit" class="btn btn-sm btn-primary">Update</button>
+                            </form>
+                        </div>
+
+                    </li>
+
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+{% endblock content %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<form action= '.' method="post" class="form-inline" >{% csrf_token %}
+    <input type="text" name="content" class="form-control mb-2 mr-sm-2" placeholder="update here....">
+        <div class="alert alert-danger" role="alert"> {{ obj.text }}
+            <h1> Do u want to delete this action {{ todo_id.text }}</h1>
+                <p><input type="submit" value="Update" /> </p>
+            <a href="#" onclick="history.go(-1)">Go Back</a>
+
+
+        </div>
+</form>
+
+{% endblock content %}
